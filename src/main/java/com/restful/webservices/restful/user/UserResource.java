@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,7 +29,8 @@ public class UserResource {
 		User user = service.findOne(id); 
 		if(user == null) 
 			throw new UserNotFoundException("id-" + id);
-		return user;	}
+		return user;	
+	}
 	
 	@PostMapping(path="/users")
 	public ResponseEntity<Object> saveUser(@RequestBody User user) {
@@ -40,4 +42,10 @@ public class UserResource {
 		return ResponseEntity.created(location).build();
 	}
 
+	@DeleteMapping(path="/users/{id}")
+	public void deleteUser(@PathVariable int id) {
+		boolean result = service.deleteUser(id);
+		if(!result) 
+			throw new UserNotFoundException("id-" + id);
+	}
 }
