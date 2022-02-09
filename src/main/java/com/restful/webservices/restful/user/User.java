@@ -2,10 +2,18 @@ package com.restful.webservices.restful.user;
 
 import java.util.Date;
 
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
+
 public class User {
 	private int id;
+	
+	@Size(min=2, message="Size has to be more than 2 charachters")
 	private String name;
+	
+	@Past
 	private Date birthDate;
+	
 	public User(int id, String name, Date birthDate) {
 		super();
 		this.id = id;
