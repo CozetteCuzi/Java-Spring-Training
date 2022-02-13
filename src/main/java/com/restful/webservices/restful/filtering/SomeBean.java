@@ -1,8 +1,10 @@
 package com.restful.webservices.restful.filtering;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@JsonIgnoreProperties(value= {"field1", "field2"})
+//@JsonIgnoreProperties(value= {"field1", "field2"})
+@JsonFilter("SimpleBeanFilter")
 public class SomeBean {
 //	@JsonIgnore
 	private String field1;
