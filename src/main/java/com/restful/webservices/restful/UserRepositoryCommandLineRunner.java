@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import com.restful.webservices.restful.entity.User;
 import com.restful.webservices.restful.service.UserRepository;
 
+
 @Component
 public class UserRepositoryCommandLineRunner implements CommandLineRunner{
 
@@ -21,7 +22,8 @@ public class UserRepositoryCommandLineRunner implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 		User user = new User("Coco", "User");
 		repository.save(user);
-		logger.info("New User has been Created " + user);
+		java.util.Optional<User> userWithIDOne = repository.findById(1L);
+		logger.info("New User has been Retrieved " + userWithIDOne);
 	}
 	
 	
